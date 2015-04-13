@@ -11,9 +11,9 @@ package com.prabhash.codejam.google.year2015;
  */
 
 public class StoreCredit {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	
+	public static void main(String[] args) throws Exception {
+		
 
 	}
 
