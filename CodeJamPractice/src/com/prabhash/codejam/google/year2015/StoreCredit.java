@@ -1,5 +1,8 @@
 package com.prabhash.codejam.google.year2015;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Problem:
  * You receive a credit C at a local store and would like to buy two items. You first walk through the store and create a list L of 
@@ -46,26 +49,63 @@ public class StoreCredit {
 		}
 		
 		System.out.println("First item position: " + (firstItemPos + 1));
-		System.out.println("Seocnd item position: " + (secondItemPos + 1));
+		System.out.println("Second item position: " + (secondItemPos + 1));
 		
+		
+	}
+	
+	/**
+	 * Method 2 to improve time complexity of this program.
+	 * 
+	 * Time Complexity: O(n)
+	 * Space Complexity: O(n)
+	 * 
+	 * @param args
+	 * @throws Exception
+	 */
+	public static void buyTwoItemsUsingMap(int credit, int numberOfItems, final int[] itemPrice) {
+		
+		//store all item price in a Hash Map to improve the comparison operation time
+		Map<Integer, Integer> priceMap = new HashMap<Integer, Integer>();
+		
+		int firstItemPos = -1;
+		int secondItemPos = -1;
+		
+		for(int i = 0; i < numberOfItems; i++) {
+			priceMap.put(itemPrice[i], i);
+		}
+		
+		for(int i = 0; i < numberOfItems; i++) {
+			
+			if(priceMap.containsKey(credit - itemPrice[i])) {
+				firstItemPos = i;
+				secondItemPos = priceMap.get(credit - itemPrice[i]);
+				break;
+			}
+		}
+		
+		System.out.println("First item position: " + (firstItemPos + 1));
+		System.out.println("Second item position: " + (secondItemPos + 1));
 		
 	}
 	
 	public static void main(String[] args) throws Exception {
 		
-//		int credit = 100;
-//		int numberOfItems = 3;
-//		int[] itemList = {5, 75, 25};
+		int credit = 100;
+		int numberOfItems = 3;
+		int[] itemList = {5, 75, 25};
 		
 //		int credit = 200;
 //		int numberOfItems = 7;
 //		int[] itemList = {150, 24, 79, 50, 88, 345, 3};
 		
-		int credit = 8;
-		int numberOfItems = 8;
-		int[] itemList = {2, 1, 9, 4, 4, 56, 90, 3};
+//		int credit = 8;
+//		int numberOfItems = 8;
+//		int[] itemList = {2, 1, 9, 4, 4, 56, 90, 3};
 		
-		buyTwoItems(credit, numberOfItems, itemList);
+		//buyTwoItems(credit, numberOfItems, itemList);
+		
+		buyTwoItemsUsingMap(credit, numberOfItems, itemList);
 		
 	}
 
