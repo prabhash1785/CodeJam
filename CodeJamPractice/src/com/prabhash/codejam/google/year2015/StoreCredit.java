@@ -86,6 +86,13 @@ public class StoreCredit {
 		
 		System.out.println("Case #" + testCase + ": " + (firstItemPos + 1) + " " + (secondItemPos + 1));
 		
+		//Test to see all test cases passed
+//		if((itemPrice[firstItemPos] + itemPrice[secondItemPos]) == credit) {
+//			System.out.println("TestCase #" + testCase + " passed!!");
+//		} else {
+//			System.out.println("TestCase #" + testCase + " failed!!");
+//		}
+		
 	}
 	
 	public static void main(String[] args) throws Exception {
