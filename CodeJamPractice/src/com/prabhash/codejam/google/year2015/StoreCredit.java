@@ -1,5 +1,7 @@
 package com.prabhash.codejam.google.year2015;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +28,7 @@ public class StoreCredit {
 	 * @param numberOfItems
 	 * @param itemPrice
 	 */
-	public static void buyTwoItems(int credit, int numberOfItems, final int[] itemPrice) {
+	public static void buyTwoItems(int testCase, int credit, int numberOfItems, final int[] itemPrice) {
 		
 		int firstItemPos = -1;
 		int secondItemPos = -1;
@@ -48,9 +50,7 @@ public class StoreCredit {
 			}
 		}
 		
-		System.out.println("First item position: " + (firstItemPos + 1));
-		System.out.println("Second item position: " + (secondItemPos + 1));
-		
+		System.out.println("Case #" + testCase + ": " + (firstItemPos + 1) + " " + (secondItemPos + 1));
 		
 	}
 	
@@ -63,7 +63,7 @@ public class StoreCredit {
 	 * @param args
 	 * @throws Exception
 	 */
-	public static void buyTwoItemsUsingMap(int credit, int numberOfItems, final int[] itemPrice) {
+	public static void buyTwoItemsUsingMap(int testCase, int credit, int numberOfItems, final int[] itemPrice) {
 		
 		//store all item price in a Hash Map to improve the comparison operation time
 		Map<Integer, Integer> priceMap = new HashMap<Integer, Integer>();
@@ -84,28 +84,42 @@ public class StoreCredit {
 			}
 		}
 		
-		System.out.println("First item position: " + (firstItemPos + 1));
-		System.out.println("Second item position: " + (secondItemPos + 1));
+		System.out.println("Case #" + testCase + ": " + (firstItemPos + 1) + " " + (secondItemPos + 1));
 		
 	}
 	
 	public static void main(String[] args) throws Exception {
 		
-		int credit = 100;
-		int numberOfItems = 3;
-		int[] itemList = {5, 75, 25};
+		BufferedReader br = new BufferedReader(new FileReader(args[0]));
 		
-//		int credit = 200;
-//		int numberOfItems = 7;
-//		int[] itemList = {150, 24, 79, 50, 88, 345, 3};
-		
-//		int credit = 8;
-//		int numberOfItems = 8;
-//		int[] itemList = {2, 1, 9, 4, 4, 56, 90, 3};
-		
-		//buyTwoItems(credit, numberOfItems, itemList);
-		
-		buyTwoItemsUsingMap(credit, numberOfItems, itemList);
+		try {
+			
+	        String line = br.readLine();
+	        
+	        int numberOfTestCases = Integer.parseInt(line);
+
+	        for(int testCase = 1; testCase <= numberOfTestCases; testCase++) {
+	        	
+	        	int credit = Integer.parseInt(br.readLine());
+	        	int numberOfItems = Integer.parseInt(br.readLine());
+	        	
+	        	String itemListing = br.readLine();
+	        	String[] itemList = itemListing.split(" ");
+	        	
+	        	int[] itemPrices = new int[numberOfItems];
+	        	
+	        	for(int i = 0; i < itemList.length; i++) {
+	        		itemPrices[i] = Integer.parseInt(itemList[i]);
+	        	}
+	        	
+	        	//call the method which finds the position of two items to be bought
+	        	buyTwoItemsUsingMap(testCase, credit, numberOfItems, itemPrices);
+	        	
+	        }
+	        
+	    } finally {
+	        br.close();
+	    }
 		
 	}
 
