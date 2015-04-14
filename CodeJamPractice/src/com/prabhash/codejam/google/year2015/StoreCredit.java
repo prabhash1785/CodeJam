@@ -61,6 +61,7 @@ public class StoreCredit {
 	/**
 	 * Method 2 to improve time complexity of this program.
 	 * 
+	 * For each test case:
 	 * Time Complexity: O(n)
 	 * Space Complexity: O(n)
 	 * 
@@ -81,7 +82,15 @@ public class StoreCredit {
 		
 		for(int i = 0; i < numberOfItems; i++) {
 			
-			if(priceMap.containsKey(credit - itemPrice[i])) {
+			int remainingCredit = credit - itemPrice[i];
+			
+			if(priceMap.containsKey(remainingCredit)) {
+				
+				//since same item can't be bought twice so for such scenario skip the current iteration
+				if(i == priceMap.get(remainingCredit)) {
+					continue;
+				}
+				
 				firstItemPos = i;
 				secondItemPos = priceMap.get(credit - itemPrice[i]);
 				break;
@@ -89,13 +98,6 @@ public class StoreCredit {
 		}
 		
 		System.out.println("Case #" + testCase + ": " + (firstItemPos + 1) + " " + (secondItemPos + 1));
-		
-		//Test to see all test cases passed
-//		if((itemPrice[firstItemPos] + itemPrice[secondItemPos]) == credit) {
-//			System.out.println("TestCase #" + testCase + " passed!!");
-//		} else {
-//			System.out.println("TestCase #" + testCase + " failed!!");
-//		}
 		
 	}
 	
@@ -124,7 +126,8 @@ public class StoreCredit {
 	        	}
 	        	
 	        	//call the method which finds the position of two items to be bought
-	        	buyTwoItemsUsingMap(testCase, credit, numberOfItems, itemPrices);
+	        	//buyTwoItems(testCase, credit, numberOfItems, itemPrices); //Time Complexity: O(n ^ 2)
+	        	buyTwoItemsUsingMap(testCase, credit, numberOfItems, itemPrices); //Time Complexity: O(n)
 	        	
 	        }
 	        
