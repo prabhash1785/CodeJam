@@ -11,6 +11,8 @@ import java.util.Map;
  * all available items. From this list you would like to buy two items that add up to the entire value of the credit. The solution you 
  * provide will consist of the two integers indicating the positions of the items in your list (smaller number first).
  * 
+ * Note: Same item cannot be bought twice as there is only one item of each kind in the store.
+ * 
  * Inputs:
  * A-small-practice.in
  * A-large-practice.in
