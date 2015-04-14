@@ -11,6 +11,10 @@ import java.util.Map;
  * all available items. From this list you would like to buy two items that add up to the entire value of the credit. The solution you 
  * provide will consist of the two integers indicating the positions of the items in your list (smaller number first).
  * 
+ * Inputs:
+ * A-small-practice.in
+ * A-large-practice.in
+ * 
  * @author prrathore
  *
  */
