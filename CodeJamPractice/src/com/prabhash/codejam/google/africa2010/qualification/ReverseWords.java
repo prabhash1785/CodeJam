@@ -1,4 +1,4 @@
-package com.prabhash.codejam.google.year2015;
+package com.prabhash.codejam.google.africa2010.qualification;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
