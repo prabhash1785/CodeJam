@@ -14,6 +14,14 @@ import java.util.List;
  */
 public class TheLastWord {
 	
+	/**
+	 * Small data set
+	 * 
+	 * Time Complexity: Exponential
+	 * 
+	 * @param word
+	 * @return String
+	 */
 	public static String findLastWord(String word) {
 		List<String> list = new ArrayList<>();
 		list.add(word.substring(0, 1));
@@ -36,6 +44,26 @@ public class TheLastWord {
 		return list.get(list.size() - 1);
 	}
 	
+	/**
+	 * For large data set
+	 * 
+	 * Time Complexity: Polynomial
+	 * 
+	 * @param word
+	 * @return String
+	 */
+	public static String findLastWordForLargeDataSet(String word) {
+		String result = word.substring(0, 1);
+		for(int i = 1; i < word.length(); i++) {
+			char c = word.charAt(i);
+			String first = c + result;
+			String second = result + c;
+			
+			result = (first.compareTo(second) < 0) ? second : first; // find the local maximum
+		}
+		return result;
+	}
+	
 	public static void main(String[] args) throws Exception {
 		BufferedReader bufferedReader = new BufferedReader(new FileReader(args[0]));
 		String line = bufferedReader.readLine();
@@ -44,7 +72,8 @@ public class TheLastWord {
 			String word = bufferedReader.readLine();
 //			System.out.println(word);
 			
-			String lastWord = findLastWord(word);
+//			String lastWord = findLastWord(word);
+			String lastWord = findLastWordForLargeDataSet(word);
 			System.out.println("Case #" + i + ": " + lastWord);
 		}
 	}
